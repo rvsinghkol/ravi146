@@ -1,0 +1,199 @@
+10. You want to send a message to all connected users as “Server is going down for maintenance”, what will you do?
+# echo please save your work, immediately. The server is going down for Maintenance at 12:30 Pm, sharply. | wall
+
+What is network bonding in Linux and where the important configuration files involved?
+ What is the advantage of Network Bonding ?
+#Network Bonding is a Linux kernel feature that allows to aggregate multiple network interfaces into a single virtual link. 
+This is a great way to achieve redundant links, fault tolerance or load balancing networks in production system. If one of 
+the physical NIC is down or unplugged, it will automatically move traffic to the other NIC card. Similar way 
+the bonding will increase the interface throughput to handle the traffic it it is configured in active-active mode.
+
+15 2 * * * root mysqldump -u root -pPASSWORD --all-databases | gzip > /mnt/disk2/database_`data ' %m-%d-%Y'`.sql.gz (crontab example)
+Setting up 2 IP address on “One” NIC. This example is on ethernet.
+
+####What is the difference between NFSv3 and NFSv4?
+ NFS3
+ Exports : All exports are mounted separately.
+ Communication : One operation per RPC.
+ Parallel high bandwidth access : None native. (Addition such as MPFS)
+ Locking : Permanent locks in yet another protocol.
+  NFS4
+ Exports : All exports can be mounted together in a directory tree structure as part of a pseudo-filesystem.
+ Communication : Multiple operations per RPC. (Improves performance)
+ Parallel high bandwidth access : pNFS
+ Locking : Lease based locking in the same protocol.
+STEP 1:Setting up first IP address. 
+Edit /etc/sysconfig/network-scripts/ifcfg-eth0 on Redhat Linux box and give the following entries as shown.
+ What is drop cache in Linux and how do you clear it ?
+# echo 1 > /proc/sys/vm/drop_caches
+
+#Full Virtualization
+Full Virtualization is virtualization in which the guest operating system is unaware that it is in a virtualized environment,
+ and therefore hardware is virtualized by the host operating system so that the guest can issue commands to what it thinks is actual hardware, 
+but really are just simulated hardware devices created by the host.
+
+Used with full virtualization is a hypervisor such as VMware’s vSphere Hypervisor or Microsoft’s Hyper-V server.
+ This hypervisor allows multiple operating systems to run simultaneously on a host computer, while also monitoring the physical server’s 
+resources and keeping each virtual server independent of other virtual servers running on the physical machine. Each guest server can run on its
+ own operating system, such as both Linux and Windows.
+
+#Para-Virtualization
+->The para-virtualization technique offers a software interface to virtual machines that is similar, but not identical to underlying hardware.
+ Unlike full server virtualization, guest servers are aware of one another when using para-virtualization. A para-virtualization hypervisor 
+does not need large amounts of processing power to manage guest operating systems because of this, as each OS is already aware of the demands 
+placed on the physical server.
+->Paravirtualization is virtualization in which the guest operating system (the one being virtualized) is aware that it is a guest and accordingly
+ has drivers that, instead of issuing hardware commands, simply issue commands directly to the host operating system.
+
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+
+DEVICE=eth0
+BOOTPROTO=static
+IPADDR=192.168.1.10
+NETMASK=255.255.255.0
+NETWORK=192.168.1.0
+ONBOOT=yes
+
+STEP 2: Setting up second IP address. Create one file as /etc/sysconfig/network-scripts/ifcfg-eth0:1 and give the entries as below in to this file.
+
+vi /etc/sysconfig/network-scripts/ifcfg-eth0:1
+
+DEVICE=eth0:1
+BOOTPROTO=static
+IPADDR=192.168.1.11
+NETMASK=255.255.255.0
+NETWORK=192.168.1.0
+ONBOOT=yes
+
+service network reload
+
+HOw to reset mysql password.
+--skip-grant-tables &
+
+
+vgdisplay -v
+4. Q. How do you find out the processes that are currently running or a particular user?
+   A. ps -au Myname   (-u by effective user ID (supports names)) (a - all users)
+10.Q. How do you get help on a UNIX terminal?
+   A. man command_name
+      info command_name (more informatin
+11.Q. How do you list contents of a directory including all of its 
+  subdirectories, providing full details and sorted by modification time?
+   A. ls -lac
+      -a all entries
+      -c by time
+
+17.Q. How do you start a job on background?
+
+   A. bg  %4  (job 4)
+19. Q. What utility would you use to cut off the first column in a text file?
+    A. awk, kde
+a) What is the command to list all files ending in 2?
+b) What is the command to list all files starting in aid?
+c) What is the command to list all "help" files with one character extension?
+     A.
+a) ls *2
+b) ls aid.*
+c) ls help.?
+39. Q. List all the files beginning with A
+    A. To list all the files beginning with A command: ls A*
+
+You can use the pvscan command to determine how much free space is currently available in the volume group.
+pvscan c
+
+The following files are used for LVM configuration:
+/etc/lvm/lvm.conf
+
+??Which utility could you use to repair the corrupted file system?
+You can use fsck to repair the corrupted file system.
+
+??Which backup strategy only backs up files that have changed since the last full backup?
+Differential backup will backup files that have changed since the last full backup.
+
+??What does firewall do?
+Firewall is a device or service which can be used to protect the network or system from other outside networks.
+
+An administrator wants to assign an IP address of 192.168.1.10, a subnet mask of 255.255.255.0, and a broadcast address of 192.168.1.254 to eth1. What command will accomplish this task?
+Following command will do this task
+ifconfig eth1 192.168.1.10 netmask 255.255.255.0 broadcast 192.168.1.254
+
+You are tasked to set up a schedule to perform automatic checks of available disk space at the end of the day. How can you accomplish this task?
+Your cron file should look similar to the following:
+* 19 * * * df -kl
+As a administrator you need to terminate the sendmail process. How will you do that?
+First you need to determine the PID of sendmail so it can be killed.
+#ps -ef |grep sendmail
+
+Now you can use kill command to terminate the process associated with sendmail.
+As a Linux admin you want to know what processes are being run by user sumit. What command can you use ?
+You can use #ps -au command to list all the process owned by user. Following command will do the assigned task
+#ps -au sumit
+
+Which log file keeps track of all user logins and logouts?
+/var/log/wtmp log file keeps track of all user logins and logouts.
+7.How to activated the logical volume which in deactivated state ?
+Answer: “lvchange -ay /dev/vg_name/lv_name”
+10.How do you find that what are the disks are used for  logical volume mirroring ? 
+Answer: use “lvs -a -o +devices” 
+# vgrename   <old_vg_name>  <new_vg_name>
+ 
+# lvrename  <vg_name>   <old_lv_name>   <new_lv_name>
+
+Q:15 How to Copy the file “server.txt” from the local machine to a remote host using port 2751 in /opt folder.
+Ans:  scp -P 2751 /home/server.txt root@mail.linuxtechi.com:/opt
+http://www.linuxtechi.com/playonlinux-install-windows-software-games-in-ubuntu/
+
+Q:2  What is DNS Server and its fundamentals ?
+Ans: The Domain Name System (DNS) is a hierarchical, distributed database.
+ It stores information for mapping Internet host names to IP addresses and vice versa, mail routing information, 
+and other data used by Internet applications.
+
+Q:11 How to find files larger than 10MB in size in /usr directory ?
+Ans: # find /usr -size +10M
+
+Q:12 How to find files in the /home directory that were modified more than 120 days ago ?
+Ans: # find /home -mtime +l20
+
+Q:13 How to find files in the /var directory that have not been accessed in the last 90 days ?
+Ans: # find /var -atime -90
+
+Q:14 Search for core files in the entire directory tree and delete them as found without prompting for confirmation
+Ans: # find / -name core -exec rm {} \;
+
+
+decade 
+
+IF /var (file is alrady full showing)
+
+#cp -a /var/cache /new/place/cache
+#rm -rf /var/cache
+#ln -s /new/place/cache /var/cache
+
+?????////Bring back deleted files with lsof
+cat > abcd
+less abcd
+ls -l abcd
+stat abcd
+rm abcd
+ls -l abcd
+Now to bring the file back. First see what lsof has to say about it:
+lsof | grep abcd
+less      4158    jimbo    4r      REG       3,65   114383   1276722 /home/jimbo/abcd (deleted)
+
+$ ls -l /proc/4158/fd/4
+lr-x------  1 jimbo jimbo 64 Oct 31 16:18 /proc/4158/fd/4 -> /home/jimbo/abcd (deleted)
+$ cp -a /proc/4158/fd/4 abcd.wrong
+$ ls -l abcd.wrong
+lrwxr-xr-x  1 jimbo jimbo 24 Oct 31 16:22 myfile.wrong -> /home/jimbo/abcd (deleted)
+$ file abcd.wrong
+abcd.wrong: broken symbolic link to `/home/jimbo/abcd (deleted)'
+$ file /proc/4158/fd/4
+/proc/4158/fd/4: broken symbolic link to `/home/jimbo/abcd (deleted)'
+So instead of all that, just a plain old cp will do the trick:
+
+$ cp /proc/4158/fd/4 abcd.saved
+And finally, verify that you've done good:
+
+$ ls -l abcd.saved
+-rw-r--r--  1 jimbo jimbo 114383 Oct 31 16:25 abcd.saved
+rename your file.

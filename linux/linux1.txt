@@ -1,0 +1,548 @@
+##how to exclude kernel package in linux
+yum update --exclude=kernel*
+## ulimit
+"Ulimit" which allows you to display and set resource limits for users.
+  ulimit -a ("/etc/security/limits.conf".)
+## How to Rollback updates with yum history command on CentOS / RHEL Servers
+[root@linuxtechi ~]# yum history list all (and ccheck latest update file and date modifidate)
+ yum history info 3
+ yum history undo 3 and then check rpm -q httpd(package name)
+ 
+?? How to force close logged user in linux.
+ans: pkill -kill -u username.
+
+@.> Find the IP address of the client in an SSH session
+   -pinky
+%%% How to keep a track of all the commands run by any user in Linux
+ # less /home/deepak/.bash_history
+
+(@)how to check when linux was installed.
+ rpm -qi basesystem.
+(@)How to Control cpu usage in linux.
+  cpulimit -p (pid) -l 30.
+(@)How to Access the Windows Share file  from Linux server.
+ . First install the install cifs-utils.
+  $ mount -t cifs //bioinf-filesrv2.mycompany.fr/cluster15  /mnt
+
+
+@ Using su - is same as logging into a fresh session on a terminal.
+   Using su  Also the new user stays in the same directory as he was before using su.
+@ How to Changing the timezone, date, and time.
+  ln -sf /usr/share/zoneinfo/Asia/Kolkata  /etc/localtime
+@.  To get the total number of INODE counts, use the below command.
+find . | wc -l
+
+@ . where the inode usage is 100% (using df -i command).
+
+? What is initrd.
+In computing, initrd (initial ramdisk) is a scheme for loading a temporary root file system into memory, 
+which may be used as part of the Linux startup process.
+
+?A sticky bit is a permission bit that is set on a directory that allows only the owner of the file within that directory,
+ the owner of the directory or the root user to delete or rename the file.
+ No other user has the needed privileges to delete the file created by some other user.
+
+lsof | grep filename (list of open file search) 
+##How to recover deleted Apache Log.
+ps -ef | grep httpd
+ls -lsa /proc/1784/fd   &service httpd stop  & cp /proc/1784/fd/7 /var/log/httpd/access_log.
+
+##how to set date.
+# date -s "2 OCT 2006 18:00:00"
+##How to determine whether a given Linux is 32 bit or 64 bit?
+Ans:- Uname -a or  cat /proc/cpuinfo.
+??##why can I ping a server but not connect via ssh? [closed]
+user@localhost:~$ telnetmy.server 22 
+iptables -I INPUT -m tcp -p tcp --dport 22 -j ACCEPT
+##How would you remove all the running process,without restarting the machine.
+ANS:disown -r
+
+##1.How to kernel Update.
+{ rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org  
+rpm -Uvh http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install kernel-lt }.
+
+##dump COMMAND:dump command makes backup of filesystem or file and directories.
+dump -0af databackup /home/user1/data( 0 specifies full-backup)  
+dump -1uf databackup /home/user1/data [1 specifies incremental backup]
+/sbin/restore -i -f /home/mary/mydirectory.dump
+
+##how to move home directory user form different location    in  centos6.
+usermod -m -d /newhome/username  username.
+usermod -m -d /users/v/vivek  vivek.
+
+##what is status code 403,404 represented in apache server.
+ANS:403 represent forbidden error,means file misses in some selinux security .
+    404 represent that there is cgi script missing or web page mising.
+
+##how to change user  shall & path = chsh -s /bin/bash username
+##kernle cache file delete = echo 1 > /proc/sys/vm/drop_caches
+##how to check vps or dedicated server:dmsg
+##ntpl full form=  Native POSIX thread library
+
+http://unixadminschool.com/blog/2012/11/redhat-linux-lvm-troubleshooting-reference/(LVM troubleshooting)
+
+##How to check which modules are installed in apache?
+apache2ctl -M
+##what is ntop?
+Now you can monitor your hosts and manage your ntop configuration.
+https://ServerIP:3000 
+##dpkg -l (for check app is installed on ubunto,debain)
+
+Finding all storage devices attached to a Linux machine.
+## lshw -class tape -class disk -class storage -short
+##vi  /etc/lvm/lvm.conf(lvm configuration path)
+
+#chown -R chope(username) /files/work (ownership change in running mode).
+#sar -u (All the sar command will have the following as the 1st line in its output.)
+#sar -u -f /var/log/sysstat/sa03
+
+#sar -u 1 3 (cPU usage of all CPUs. “1 3? reports for every 1 seconds a total of 3 times.)
+#sar -u -f /var/log/sysstat/sa10 Displays CPU usage for the 10day of the month from the sa10 file.
+#Displaying the Network Statistics: sar -n DEV
+#to view the running tcp port= netstat -ntpl
+#to view the nfs server  in centos =showmount -e 192.168.0.100(exportfs -a)
+
+Working directory forcefully umount or file open of a running process
+# umount /mnt/test
+umount: /mnt/test: device is busy.
+# lsof /mnt/test/
+# kill -9 15819 24932
+# lsof /mnt/test/
+# umount /mnt/test  (other option is # umount -l /mnt/test & umount -f /mnt/test)
+
+#Q:14 What is Network Bonding ?
+ANS:Network bonding is the aggregation of multiple Lan cards into a single bonded interface to provide fault 
+tolerance and high performance. Network bonding is also known as NIC Teaming.
+#Q:19 List the services that are enabled at a particular run level in linux server ?
+ans: chkconfig –list | grep 5:on
+
+Tomcat port= 8080 configuration for tomcat ( /usr/share/tomcat7/confserver.xml  )
+HTTP Server 2.4.12 (httpd): 2.4.12 is the latest available version (apache version)
+Tomcat version  8.0.9 (zip) Linux ALL Binary
+
+mount -o remount,rw /  (readonly option is set add ! to override)
+
+
+11.How to check server is configured with Multipath disks??
+
+# ls -lrt /dev/mapper  //To View the Mapper disk paths and Lvols
+#dmsetup table
+#dmsetup ls
+#dmsetup status
+
+scp someuser@alpha.com:/somedir/somefile.txt someuser@beta.com:/anotherdir
+//Force password change
+# chage -d 0 {user-name}
+  awk    =  Find and Replace text, database sort/validate/index
+ cut: cut selected fields from a file.
+  dmesg    Print kernel & driver messages 
+  less  =  Display output one screen at a time
+ more  =   Display output one screen at a time
+ lpr   =   Off line print
+  lprint  = Print a file
+  lprintd  =Abort a print job
+  lprintq  =List the print queue
+///SQUID
+/var/log/squid/access.log 
+/var/log/squid/cache.log ,  /store.log
+HTTPD logs
+/var/log/httpd/access_log
+Find out linux default gateway / router IP address under Linux / UNIX using route command
+Ans:-  route -n
+
+\\Loadaverage
+The first time you see a load average, the numbers look fairly meaningless. Here’s an example load average readout:
+load average: 1.05, 0.70, 5.09
+load average over the last 1 minute: 1.05
+load average over the last 5 minutes: 0.70
+load average over the last 15 minutes: 5.09
+
+Cpu & memory utlisation
+free -m
+New Harddisk scan without restarting.
+echo "- - -" > /sys/class/scsi_host/host#/scan
+fdisk -l
+tail -f /var/log/message
+Display Memory Utilization Slabinfo
+A:-  # vmstat -m
+#4: uptime - Tell How Long The System Has Been Running
+Print All Process On The Server
+# ps -ax
+# ps axu
+
+# RunLevel check
+who  -r
+
+9.Daily routines of Linux Administrators ?
+*.Check the health of servers
+*.Check for updates
+*.Check the Backup
+*.Check with the trouble ticketing system for any unread ticket.
+*.Troubleshoot if there any problem
+*.Installation of new servers, if needed.
+*.Report to the Boss
+
+
+#7: iostat - Average CPU Load, Disk Activity
+To display process memory information for pid # 47394, 
+enter:
+
+# pmap -d 47394
+#13: iptraf - Real-time Network Statistics
+To unlock an account after login failures, run:
+faillog -r -u userName    
+
+Note you can use passwd command to lock and unlock accounts:
+# lock account
+passwd -l userName
+# unlocak account
+passwd -u userName
+
+Find Listening Network Ports
+netstat -tulpn
+Linux display password status
+passwd -S {user-name}
+How do I view log files on Linux?
+# cd /var/logs
+To view a common log file called /var/log/messages use any one of the following command:
+
+# less /svar/log/messages
+# more -f /var/log/messages
+# cat /var/log/messages
+# tail -f /var/log/messages
+# grep -i error /var/log/messages
+SELinux is a set of security policies/modules which are going to apply on the machine 
+to improve the overall security of the machine. These are the Linux security modules(LSM)
+ which are loaded in to kernel to improve security on accessing services/files which improve security.
+ SELinux is short form of Security Enhanced Linux. SElinux is a security feature which was shipped with RHEL5,
+ it is much secure than any other security such as PAM and Initd. Apparmor is some times consider as eloquent 
+to SELinux. Below is the security model in Linux
+
+SELinux is set in three modes.
+
+•Enforcing - SELinux security policy is enforced. IF this is set SELinux is enabled and will try to enforce the SELinux policies strictly
+•Permissive – SELinux prints warnings instead of enforcing. This setting will just give warning when any SELinux policy setting is breached
+•Disabled – No SELinux policy is loaded. This will totally disable SELinux policies.
+
+
+
+
+26. Linux system monitoring Tools?
+
+top – Process Activity Command
+vmstat – System Activity, Hardware and System Information
+w – Find out Who Is Logged on And What They Are Doing
+Uptime – Tell How Long the System Has Been Running
+ps – Displays the Processes
+free – Memory Usage
+iostat – Average CPU Load, Disk Activity
+sar – Collect and Report System Activity
+mpstat – Multiprocessor Usage
+pmap – Process Memory Usage
+
+23. How to see unallocated hard disk space on linux
+
+df -h
+
+24. How do u find remote machine operating system and version?
+
+nmap -A –v 192.168.1.100
+
+25. How do you port scanning with netstat command?
+netstat –antp
+
+/Proc file system – Various Kernel Statistics
+# cat /proc/cpuinfo
+# cat /proc/meminfo
+# cat /proc/zoneinfo
+# cat /proc/mounts
+
+29. Important port no:
+
+NFS – 2049
+FTP= 20 (data transfer) , 21 ( Connection established)
+SAMBA – 445
+SSH – 22
+DNS – 53
+POP3 – 110
+IMAP – 143
+HTTPS – 443
+HTTP – 80
+SMTP/SMPTS 25/465
+POP3/POP3S 110/995
+IMAP/IMAPS 143/993
+
+7. What is a command to display top 10 users who are using huge space?
+
+du -sh /home/* | sort -r | head -10
+
+8. How do find all failed login attempts via ssh?
+
+tail -f /var/log/secure | grep Failed
+
+
+show the date every rpm was installed
+Ans:=  rpm -qa --last | grep kernal
+For 2.4 based kernels, the maximum LV size is 2TB. 
+For 32-bit CPUs on 2.6 kernels, the maximum LV size is 16TB.
+For 64-bit CPUs on 2.6 kernels, the maximum LV size is 8EB. 
+
+With combination of -ltr will shows latest modification file or directory date as last.
+
+# ls -ltr
+
+Display Inode number of File or Directory
+ls -i
+Shows version of ls command
+ls --version
+Display UID and GID of Files
+ls -n
+
+How to View Crontab Entries?
+crontab -l
+Schedule a Job for Specific Range of Time (e.g. Only on Weekdays)
+00 09-18 * * * /home/ramesh/bin/check-db-status
+Cron Job every weekday during working hours
+00 09-18 * * 1-5 /home/ramesh/bin/check-db-status
+Crontab HowTo: View Other Linux User’s Crontabs entries
+root@dev-db# crontab -u sathiya -l
+
+Schedule a Background Cron Job For Every 10 Minutes.
+*/10 * * * * /home/ramesh/check-disk-space
+Verifying all the RPM Packages using rpm -Va
+# rpm -Va
+
+===========
+Repair Tables using Mysqlcheck
+# mysqlcheck -r thegeekstuff employee -u root -p
+Enter password:
+thegeekstuff.employee        OK
+
+#mysqlcheck -r [database name]
+
+myisamchk -r /var/lib/mysql/[database name]/*
+¦/var/log/mysqld.log : MySQL database server log file
+
+
+how to take a backup of a single table in the mysql database?
+
+mysqldump -u root -p  db_name table_name > table_name.sql
+##Backing Up(Mysql)
+mysqldump -u username -p database_to_backup > backup_name.sql
+##Restoring (mysql).
+{ We need to create a blank database to house the imported data. First
+mysql -u username -p
+Create a new database which will hold all of the data from the data dump and then exit out of the MySQL 
+CREATE DATABASE database_name;
+exit
+Next, we can redirect the dump file into our newly created database by issuing the following command:
+mysql -u username -p database_name < backup_name.sql }\\\\
+## (cronjob schudle with date).
+mysqldump -u root -pmysql123 –all-databases –routines| gzip > /root/MySQLDB_`date ‘+%m-%d-%Y’`.sql.gz
+7. Combine Check, Optimize, and Repair Tables
+# mysqlcheck -u root -p --auto-repair -c -o thegeekstuff
+
+Dump and restore from a compressed (.sql.gz) format
+Dump
+
+mysqldump db_name table_name | gzip > table_name.sql.gzRestore
+
+gunzip < table_name.sql.gz | mysql -u username -p db_name
+--------------------------------------------------------------------------------
+
+
+¦Ext2 doesnot have journaling feature.
+¦On flash drives, usb drives, ext2 is recommended, as it doesn’t need to do the over head of journaling.
+¦Maximum individual file size can be from 16 GB to 2 TB
+¦Overall ext2 file system size can be from 2 TB to 32 TB
+
+¦The main benefit of ext3 is that it allows journaling.
+¦Maximum individual file size can be from 16 GB to 2 TB
+¦Overall ext3 file system size can be from 2 TB to 32 TB
+¦You can convert a ext2 file system to ext3 file system directly (without backup/restore).
+¦Journaling has a dedicated area in the file system, where all the changes are tracked. 
+¦Maximum individual file size can be from 16 GB to 16 TB
+
+¦You can also mount an existing ext3 fs as ext4 fs (without having to upgrade it).
+¦In ext4, you also have the option of turning the journaling feature “off”.
+¦Overall maximum ext4 file system size is 1 EB (exabyte). 1 EB = 1024 PB (petabyte). 1 PB = 1024 TB (terabyte).
+
+An app server is a software framework. It is dedicated to do one task and includes programs,
+ routines, scripts for the the construction of applications. An app server is used to manage business 
+logic and works over http, https, gui, webserver and other protocols based clients. Examples of Java application servers 
+- JBoss, Apache Geronimo, Weblogic. Zend offers an application server called Zend Serve for PHP applications.
+ Zope is another app server written in Python. App servers are complex to design. 
+
+A web server only handles HTTP and HTTPS protocol and used to create html pages only. 
+You can use PHP, Python, Perl cgi script for dynamic page generation. Web servers are easy to design.
+ Examples of web servers - Apache, lighttpd, IIS, nginx. 
+
+Put the ls command in the background, enter:
+
+$ ls *.py > output.txt &
+php myscript.php &
+
+echo hello | ./valecho &  stop command
+
+ # shutdown -h now
+Shutdown the system after 10 minutes.
+
+# shutdown -h +10
+
+chmod command is used to change the permissions for a file or directory.
+
+$ chmod ug+rwx file.txt
+
+-----
+33. chown command examples
+chown command is used to change the owner and group of a file. \
+
+$ chown oracle:dba dbora.sh
+
+...How do I create soft link / symbolic link?
+ln -s {target-filename} {symbolic-filename}
+
+ln -s /webroot/home/httpd/test.com/index.php /home/vivek/index.php
+ls -l
+
+$ nice -n 19 tar cvzf archive.tgz largefile
+
+Using Netstat command to get network state 
+
+* >  ...netstat -a | less 
+
+---Tcpdump is the most widely used network packet analyzer, 
+which is used to capture and filter network on the specified interface receiving or transmission of TCP/IP packets
+
+tcpdump -i eth0 
+Lsof:=you can easily see which file is being used
+[root@devops ~]# lsof | more
+
+ ???? process identifier, a PID is a unique number that identifies each of the
+ running processes in an operating system such as Linux, Unix, Mac OS X, and Microsoft Windows.
+PID is a unique number that helps identify a hardware product or a registered software product.
+
+An inode is an entry in inode table, containing information ( the metadata ) about a regular file and directory.
+An inode is a data structure on a traditional Unix-style file system such as ext3 or ext4. 
+
+Inode number also called as index number 
+# ls -il  tecadmin.txt
+
+Hard links share the same inode. Soft links do not.
+Hard links can't cross file systems. Soft links do.
+
+How to setup two IP address on single NIC in Linux.
+
+vi /etc/sysconfig/network-scripts/ifcfg-eth0:1
+
+DEVICE=eth0:1
+BOOTPROTO=static
+IPADDR=192.168.1.11
+NETMASK=255.255.255.0
+NETWORK=192.168.1.0
+ONBOOT=yes
+You are tasked to delete a user account with all his associated files including his home directory and mail folder. How will you do that ?
+
+#userdel -r [username]
+
+$ pgrep firefox # will return PID of firefox
+
+### software RAID processing is performed by the host server’s CPU (Central processing unit),
+whereas for hardware RAID processing is performed by an external CPU located on a dedicated RAID card.
+
+##TCP/IP provides end-to-end connectivity specifying how data should be formatted, 
+addressed, transmitted, routed and received at the destination
+29. Which layers are network support layers?
+
+a. Physical Layer
+b. Data link Layer and 
+c. Network Layers
+30. Which layers are user support layers?
+
+a. Session Layer
+b. Presentation Layer and 
+c. Application Layer
+#What are the differences between static ip addressing and dynamic ip addressing?
+With static IP addressing, a computer (or other device) is configured to always use the same IP address.
+ With dynamic addressing, the IP address can change periodically and is managed by a centralized network service.
+#What is the DNS forwarder?
+DNS servers often must communicate with DNS servers outside of the local network. A forwarder is an entry that is used 
+when a DNS server receives DNS queries that it cannot resolve locally. It then forwards those requests to external DNS servers for resolution.
+#What are the difference between hub and switch?
+
+Hub is a layer 1 device. It will out the signal from all of its port except the one from where its insert. 
+It is unable to detect the collision. It works on single collision and single broadcast domain. 
+Switch is layer 2 device. It maintains a CAM table that store the MAC address of devices attached on its port. 
+CAM table is used to make the forwarding decision. It works on per port collision and single broadcast domain.
+
+
+
+
+
+A router is a networking device, commonly specialized hardware, that forwards data packets between computer networks. 
+This creates an overlay internetwork, as a router is connected to two or more data lines from different networks. 
+
+19. What is the command to remove Lvm ,Pv and vg
+
+1st remove the entry on /etc/fstab file & save – quit.
+2nd remove LVM – lvremove lvname
+3rd remove VG – vgremove vgname
+4th remove PV – pvremove pvname
+
+20. How to create SAMBA server in fedora 9 Linux?
+
+yum install samba -y
+
+yum install samba-swat –y
+
+vi /etc/samba/smb.conf
+
+comment = windows sharing
+path = path/your/share/directory
+valid users = surendra
+writable = yes
+browseable = yes
+
+then type testparm for code testing.
+
+smbpasswd -a username
+smbpasswd -e username
+
+service smb restart
+chkconfig smb on
+
+18. What command do you run to check file system consistency?= fsck
+TCP is a Transmission Control Protocol.UDP is a User Datagram Protocol.
+There are four major differences between UDP and TCP:1. TCP can establish a Connection and UDP cannot.
+2. TCP provides a stream of unlimited length, UDP sends Small packets.
+3.TCP gurantees that as long as you have a connection data sent will arrive at the destination, UDP provides not guarantee delivery.
+4.UDP is faster for sending small amounts of data since no connection setup is required, the data can be sent in less time then it takes for TCP to establish a connection.
+21. How to schedule cron backup to run on 4th Saturday of month?
+
+* * * * 6 weekdaynum 4 && sh /backup/test.sh
+30. How do u extract files from iso cd images in linux?
+
+mount –o loop disk1.iso /mnt/iso
+##dracut – low-level tool for generating an initramfs image
+Create an initramfs for the kernel with the version . If is omitted, then the version of the actual running kernel is used.
+ If is omitted or empty, then the default location /boot/initramfs-.img is used.
+
+My strengths are that I am honest, sincere to my work, punctual, and quick learner.always ready to help and motivated to do anything.
+My weakness is I am emotional, I easily trust people, and I am very flexible as I can't say "NO" to people. As no one is perfect sir I am working on it to make my weaknesses into strength.
+. I'm workaholic.
+###::::Login Notification When User Logged into the Linux Machine:::::
+In home path of root edit .bashrc file  vi .bashrc
+echo "ALERT - Root Shell Accessed on:" `date` `who` | mail -s "Alert: Root shell Accessed on `hostname`" <YOUR EMAIL ID>
+
+##If you want to add for all the users when you install a Linux server freshly go to /etc/skel 
+# cd /etc/skel
+# vi .bashrc
+echo "ALERT - User `who` Logan on:" `date` `who` | mail -s "Alert: User `who am i` logged on to `hostname`" aravikumar48@gmail.com
+
+##Blade server
+A blade server is a compact, self-contained server that consists of core processing components that 
+fit into an enclosure with other blade servers. A single blade may consist of hot-plug hard-drives, 
+memory, network cards, input/output cards and integrated lights-out remote management.
+###A rack server, also called a rack-mounted server, is a computer 
+dedicated to use as a server and designed to be installed in a framework called a rack.

@@ -1,0 +1,40 @@
+https://www.unixmen.com/install-and-configure-nagios-in-centos-6-4-rhel-6-4/ (nagios)
+Rahul Puli 9959112217
+VC69 : RicVCs@#69 
+
+VC240: RicVCs@#240 
+
+VC87:  RicVCs@#87 
+WIN SERVER 2008 Activation Key- MTCRC-BHD23-H8RKQ-V94MV-W4KK4
+m0re#2835
+./officer
+
+WIN SERVER 2012 Activation Key : RRNRR-MWFGD-YT2V3-HTVKT-YG69Q   
+
+
+WIN SERVER 2012 R2 Activation Key - D2N9P-3P6X9-2R39C-7RTCD-MDVJX
+
+You can give the user ownership with the following command:
+chown -R username:groupname directory
+But if you want to add this user to the group associated with "myfolder", you can run
+
+sudo usermod -a -G groupname username
+and then execute
+
+sudo chmod g+rwx myfolder
+!Mynds@l#6742 
+
+103.25.172.132
+
+yum install xorg-x11-xauth xterm for (xming & xeyes)
+
+
+
+!Mynds@l#6742 
+
+
+31061
+
+
+
+Z:\TReDS_IT_Infra\Server Documentation  (TReDS) 1900  
